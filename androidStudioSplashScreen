@@ -1,0 +1,27 @@
+Koraci:
+1.Gradle/BuildGraddle(apps) dodati sledeće:     implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
+2.Java/Ime projekta desni klik i new/Activity/Empty Activity i odčekirati opciju Generate Layout Files
+3.U funkciju onCreate dodati sledeći kod:
+
+ EasySplashScreen config=new EasySplashScreen(SplashScreenActivity.this)
+                .withFullScreen()
+                .withTargetActivity(MainActivity.class)
+                .withSplashTimeOut(5000)
+                .withBackgroundColor(Color.parseColor("#1a1b29"))
+                .withHeaderText("Header")
+                .withFooterText("Footer")
+                .withBeforeLogoText("Before")
+                .withAfterLogoText("After")
+                .withLogo(R.mipmap.ic_launcher_round);
+
+        config.getHeaderTextView().setTextColor(Color.WHITE);
+        config.getFooterTextView().setTextColor(Color.WHITE);
+        config.getBeforeLogoTextView().setTextColor(Color.WHITE);
+        config.getAfterLogoTextView().setTextColor(Color.WHITE);
+
+        View easySplashScreen = config.create();
+        setContentView(easySplashScreen);
+        
+ 4. Otvoriti androidManifest.xml i zameniti mesta .MainActivity i .SplashScreen
+ 5. Da se ne bi prikazivao meni iznad treba otići u res/values/styles.xml i promeniti ovaj deo koda ovako:
+     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
